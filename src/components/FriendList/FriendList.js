@@ -16,7 +16,7 @@ const FriendList = ({ friends }) => (
 );
 
 FriendList.propTypes = {
-  friends: PropTypes.array,
+  friends: PropTypes.array.isRequired,
 };
 
 export default FriendList;
