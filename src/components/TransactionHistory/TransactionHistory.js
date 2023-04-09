@@ -1,3 +1,4 @@
+import { logDOM } from '@testing-library/react';
 import './TransactionHistory.css';
 import PropTypes from 'prop-types';
 const TransactionHistory = ({ items }) => {
@@ -12,12 +13,15 @@ const TransactionHistory = ({ items }) => {
       </thead>
 
       <tbody>
-        {items.map(data => {
+        {items.map(({ id, type, amount, currency }, index) => {
           return (
-            <tr key={data.id}>
-              <td>{data.type}</td>
-              <td>{data.amount}</td>
-              <td>{data.currency}</td>
+            <tr
+              key={id}
+              style={{ backgroundColor: index % 2 === 0 || '#d0c1b5' }}
+            >
+              <td>{type}</td>
+              <td>{amount}</td>
+              <td>{currency}</td>
             </tr>
           );
         })}
@@ -27,7 +31,14 @@ const TransactionHistory = ({ items }) => {
 };
 
 TransactionHistory.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default TransactionHistory;
