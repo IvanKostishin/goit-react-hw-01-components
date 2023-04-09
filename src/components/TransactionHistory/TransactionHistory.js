@@ -1,4 +1,3 @@
-import { logDOM } from '@testing-library/react';
 import './TransactionHistory.css';
 import PropTypes from 'prop-types';
 const TransactionHistory = ({ items }) => {
